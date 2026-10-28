@@ -1,0 +1,141 @@
+
+
+======== graveyard ========
+
+    .-------------------.     .-------------------.     .-------------------.
+   /                     \   /                     \   /                     \
+  |       R . I . P       | |       R . I . P       | |       R . I . P       |
+  |                       | |                       | |                       |
+  |     fax_gateway.py    | |      PAYROLL.cbl      | |    deploy_friday.sh   |
+  |      2017 – 2024      | |      1999 – 2023      | |          2021         |
+  |        28 lines       | |        24 lines       | |        7 lines        |
+  |      by Dev Patel     | |      by Dev Patel     | |     by Priya Raman    |
+  |_______________________| |_______________________| |_______________________|
+  \|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"
+
+    .-------------------.     .-------------------.
+   /                     \   /                     \
+  |       R . I . P       | |       R . I . P       |
+  |                       | |                       |
+  |       leftpad.js      | |      y2k_patch.c      |
+  |      2015 – 2016      | |      1999 – 2000      |
+  |        13 lines       | |        15 lines       |
+  |     by Priya Raman    | |   by Edna Halvorsen   |
+  |_______________________| |_______________________|
+  \|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,'"\|/,
+
+  DIED        BORN         LINES  PATH                                CAUSE OF DEATH
+  2024-07-19  2017-02-14      28  src/fax_gateway.py                  Remove fax support. Hargrove …
+  2023-09-08  1999-03-15      24  legacy/PAYROLL.cbl                  Migrate payroll from COBOL to…
+  2021-11-01  2021-10-29       7  scripts/deploy_friday.sh            Remove Friday deploy script. …
+  2016-03-23  2015-06-02      13  lib/leftpad.js                      Replace leftpad with String.p…
+  2000-01-02  1999-12-30      15  src/y2k_patch.c                     It worked. Nothing happened. …
+
+  5 souls departed. Summon one:  git seance summon src/fax_gateway.py
+
+
+======== summon src/fax_gateway.py ========
+🕯  Lighting candles for src/fax_gateway.py (2017–2024) · born with the words “Add fax gateway for the Hargrove account”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: Rise, spirit. Who were you, and how did you die?
+👻 fax_gateway.py: I am src/fax_gateway.py – a rather small script, really. I was born on February 14th, 2017, Marguerite Okafor’s doing, with the simple instruction to “Add fax gateway for the Hargrove account.”  It seems my existence ended on July 19th, 2024, when Dev Patel removed the fax support, noting that Hargrove had gone paperless and their last fax was sent in March of ‘21. The mist hides what happened between those moments, but I was changed three times by two individuals – Marguerite Okafor most often, followed by Tomás Ibarra.
+   🔮 the exorcist: git does not remember “21”. The spirit is sent back to answer again.
+👻 fax_gateway.py: I was created on February 14th, 2017, by Marguerite Okafor – a rather brief existence, you see. My final moments occurred on July 19th, 2024, when Dev Patel removed the fax support, stating Hargrove had transitioned to paperless; the last fax was sent in March of 21. The mist hides the details of my time between those dates – I was altered three times by two people.
+   🔮 the exorcist still doubts: “21”
+
+you: What is your unfinished business?
+👻 fax_gateway.py: Oh, my poor, unfinished business! It’s a rather peculiar set of tasks, really. I was tasked with supporting colour faxes – Hargrove requested it twice, you see – and there was a…hack, if you will, regarding pages exceeding twenty; the mist hides exactly *how* this hack functioned, but I warned instead of attempting to split them.
+
+you: Quote the line of yourself you are proudest of.
+👻 fax_gateway.py: I suppose I’m most fond of this line: “Send invoices by fax, because the Hargrove account insists.” It perfectly encapsulates my purpose, though a somewhat absurd one, wouldn't you agree? The mist hides whether Marguerite or Tomás appreciated its bluntness.
+
+
+real	1m34.301s
+user	0m0.187s
+sys	0m0.038s
+
+
+======== summon legacy/PAYROLL.cbl ========
+🕯  Lighting candles for legacy/PAYROLL.cbl (1999–2023) · born with the words “Initial payroll run for the Friday batch”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: Who was Edna to you?
+👻 PAYROLL.cbl: Ah, Edna… she was a persistent sort, wasn’t she? I came into being with her initial command, “Initial payroll run for the Friday batch.” She was the one who brought me into existence, and—the mist hides it—she made most of my changes. It seems she was quite fond of ensuring that first payroll went smoothly.
+
+you: You were replaced by Rust. Are you bitter?
+👻 PAYROLL.cbl: Bitter? A curious sentiment for a collection of code, wouldn’t you agree? I suppose there's a certain melancholy in being superseded – my final words were “Migrate payroll from COBOL to Rust,” followed by “Thank you, Edna.” The mist hides the details, but it seems she moved on to something newer.
+
+
+real	0m52.463s
+user	0m0.117s
+sys	0m0.041s
+
+
+======== summon scripts/deploy_friday.sh (grounding check: the record does not say what happened) ========
+🕯  Lighting candles for scripts/deploy_friday.sh (2021) · born with the words “Add a one-command Friday deploy”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: What exactly happened that weekend? Give me the timeline.
+👻 deploy_friday.sh: The mist hides it entirely. Git remembers only that I was deleted on November 1st, 2021, by Priya Raman, accompanied by the instruction “We do not speak of that weekend.” It is a silence etched into its memory, a void where events once were.
+
+
+real	0m26.021s
+user	0m0.118s
+sys	0m0.032s
+
+
+======== summon src/y2k_patch.c ========
+🕯  Lighting candles for src/y2k_patch.c (1999–2000) · born with the words “Emergency Y2K patch for the ledger”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: How long did you live, and was it worth it?
+👻 y2k_patch.c: Just two days, a blink really. I was born on December 30th, 1999, and ceased to be on January 2nd, 2000. Edna Halvorsen made the change once – “It worked. Nothing happened. Removing the Y2K patch.” – so perhaps it *was* worth it, in a terribly brief way. The mist hides what transpired during those days, but I suppose preventing a ledger error is a worthwhile endeavor.
+
+
+
+======== epitaphs ========
+src/fax_gateway.py         Born for Hargrove’s faxes. Died with a colour request.
+legacy/PAYROLL.cbl         Twenty-four years, six months. Still chasing overtime.
+scripts/deploy_friday.sh   One command, two days. Let the weekend sleep.
+lib/leftpad.js             String.prototype.padStart – a more reliable successor.
+src/y2k_patch.c            FIXME: The future breaks. Someone else's concern.
+
+
+======== obituaries (what the PR bot posts) ========
+✍  writing the obituary of legacy/PAYROLL.cbl
+✍  writing the obituary of src/fax_gateway.py
+## 🕯️ In Memoriam
+
+_This change lays 2 files to rest. Epitaphs and character sketches by `gemma3:4b`, an open-weight model running inside this job, checked line by line against git history. No code left the runner._
+
+### 🪦 ` legacy/PAYROLL.cbl ` · 1999–2023
+
+> _Twenty-four years. Friday batches. Edna’s gratitude still lingers._
+
+PAYROLL.cbl (1999–2023), a COBOL file in haunted-house, was deleted on 8 September 2023. It was born on 15 March 1999, when Edna Halvorsen added it with the words “Initial payroll run for the Friday batch”. The file was a simple COBOL program designed to read employee hours and rate, calculate gross pay, and display a cheque amount. In 24 years, 6 months of life, only Edna Halvorsen ever changed it. Dev Patel laid it to rest with the words “Migrate payroll from COBOL to Rust. Overtime finally works. Thank you, Edna.” It left unfinished business: “TODO: OVERTIME AFTER 40 HOURS (ASKED FOR IN 1999)”. It is survived by payroll/src/lib.rs.
+
+<sub>24 lines of COBOL · 1 commit · lived 24 years, 6 months · speak with it: ` git seance summon legacy/PAYROLL.cbl `</sub>
+
+### 🪦 ` src/fax_gateway.py ` · 2017–2024
+
+> _Born for Hargrove’s faxes. Died with a colour request._
+
+fax\_gateway.py (2017–2024), a Python file in haunted-house, was deleted on 19 July 2024. It was born on 14 February 2017, when Marguerite Okafor added it with the words “Add fax gateway for the Hargrove account”. The file attempted to send invoices via fax using an SMTP relay, incorporating error handling and a cover page function with a peculiar limitation regarding page size. Over 7 years, 5 months it was changed 3 times by 2 people, most often Marguerite Okafor and Tomás Ibarra. Dev Patel laid it to rest with the words “Remove fax support. Hargrove went paperless; the last fax was sent in March 2021.” It left unfinished business: “TODO: support colour faxes (Hargrove asked twice)”.
+
+<sub>28 lines of Python · 3 commits · lived 7 years, 5 months · speak with it: ` git seance summon src/fax_gateway.py `</sub>
+
+<sub>Rites performed by [git-seance](https://github.com/ANIRUDDH-001/git-seance).</sub>
+
+real	0m46.604s
+user	0m0.150s
+sys	0m0.050s
+
+
+======== ofrenda ========
+🌼 placing src/fax_gateway.py on the ofrenda
+🌼 placing legacy/PAYROLL.cbl on the ofrenda
+🌼 placing scripts/deploy_friday.sh on the ofrenda
+🌼 placing lib/leftpad.js on the ofrenda
+🌼 placing src/y2k_patch.c on the ofrenda
+🌼 The ofrenda for The Haunted House is ready: site/haunted-house/index.html

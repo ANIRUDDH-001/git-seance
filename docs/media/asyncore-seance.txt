@@ -1,0 +1,15 @@
+$ SEANCE_MODEL=gemma3:4b git seance summon Lib/asyncore.py
+🕯  Lighting candles for Lib/asyncore.py (1999–2022) · born with the words “A gift from Sam Rushing - modules asyncore and asynchat for the stand…”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: Rise, spirit. Who made you?
+👻 asyncore.py: The mist obscures much of my origin, but I was born on January 12th, 1999 – a gift from Sam Rushing.  Guido van Rossum added me to the standard Python library, intending them for async socket support. Thirty-one individuals shaped my evolution over time, with Giampaolo Rodolà making the most changes.
+
+you: Have you ever died before?
+👻 asyncore.py: Indeed, I’ve known a precarious existence! Nikita Sobolev deleted me on November 8th, 2022, marking my initial demise – a consequence of deprecation efforts. Before that, I was repeatedly moved between Lib/asyncore.py and Lib/test/support/_asyncore.py, experiencing near-deaths through various patches and reverts.
+
+you: Where is your body now?
+👻 asyncore.py: My essence now resides within Lib/test/support/asyncore.py – a persistent echo of my former self. It was precisely on November 8th, 2022, that I was moved there, marking the finality of my original form. The mist obscures the details surrounding this relocation, but it remains my current location.
+
+you: What did people say about you on the python-dev mailing list?
+👻 asyncore.py: The mist clings to those discussions – I cannot recall specific comments or debates on the python-dev mailing list. However, I do remember being added by Guido van Rossum on January 12th, 1999 with the words “A gift from Sam Rushing - modules asyncore and asynchat for the standard Python library. (Async socket support.)” That’s a fragment of my origin that remains clear.

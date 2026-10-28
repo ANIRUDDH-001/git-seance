@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ofrenda · The Haunted House</title>
+<meta name="description" content="A Día de los Muertos ofrenda for the files deleted from The Haunted House, made with git-seance.">
+<style>
+:root {
+  --night: #140b24; --night-2: #23123d; --paper: #fff7e8; --ink: #2a1a12;
+  --marigold: #ff9f1c; --marigold-deep: #e86a00; --rose: #e4007c; --wood: #5b3218; --wood-light: #7a4524;
+  --muted: #cbb9e8; --candle: #fff3d6;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: radial-gradient(1200px 600px at 50% -10%, #3a1d63 0%, var(--night) 60%) fixed, var(--night);
+  color: var(--paper); font: 16px/1.5 ui-serif, Georgia, "Times New Roman", serif; min-height: 100vh; overflow-x: hidden;
+}
+.banner { display: flex; justify-content: center; gap: 6px; padding: 0 8px; position: relative; }
+.banner::before { content: ""; position: absolute; left: 0; right: 0; top: 2px; height: 2px; background: #d9c7a3; opacity: .6; }
+.flag { width: clamp(34px, 9vw, 72px); height: auto; transform-origin: top center; animation: sway 5s ease-in-out infinite; animation-delay: var(--d); filter: drop-shadow(0 4px 6px rgba(0,0,0,.35)); }
+@keyframes sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+header { text-align: center; padding: 28px 16px 8px; }
+header .kicker { letter-spacing: .3em; text-transform: uppercase; color: var(--marigold); font: 600 12px/1 ui-sans-serif, system-ui, sans-serif; margin: 0 0 12px; }
+h1 { font-size: clamp(32px, 6vw, 60px); margin: 0; font-weight: 600; text-shadow: 0 0 24px rgba(255,159,28,.35); }
+header p.sub { color: var(--muted); font-style: italic; margin: 10px auto 0; max-width: 36em; }
+.stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 28px; margin: 18px 0 0; font: 14px/1.3 ui-sans-serif, system-ui, sans-serif; color: var(--muted); }
+.stats b { color: var(--paper); font-size: 20px; display: block; font-family: ui-serif, Georgia, serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 24px 16px 40px; }
+.tier {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; padding: 26px 18px 30px; margin: 0 auto 0;
+  border-bottom: 18px solid var(--wood); position: relative;
+  background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,.25));
+  box-shadow: 0 14px 0 -4px var(--wood-light), 0 24px 30px rgba(0,0,0,.45);
+}
+.tier-0 { max-width: 70%; } .tier-1 { max-width: 86%; } .tier-2 { max-width: 100%; }
+.tier + .tier { margin-top: 26px; }
+.tier::after { /* marigold garland along each shelf */
+  content: ""; position: absolute; left: 0; right: 0; bottom: -14px; height: 12px;
+  background: radial-gradient(circle at 6px 6px, var(--marigold) 0 5px, var(--marigold-deep) 5.5px 6px, transparent 6.5px) 0 0 / 14px 12px repeat-x;
+}
+.portrait {
+  width: 250px; background: var(--paper); color: var(--ink); border-radius: 6px; padding: 14px 14px 46px; position: relative;
+  box-shadow: 0 10px 24px rgba(0,0,0,.45), inset 0 0 0 1px rgba(0,0,0,.08); transform: rotate(var(--r, 0deg));
+}
+.portrait:nth-child(3n+1) { --r: -1.2deg; } .portrait:nth-child(3n+2) { --r: 0.8deg; } .portrait:nth-child(3n) { --r: -0.4deg; }
+.frame {
+  border: 6px double var(--marigold-deep); border-radius: 50% 50% 8px 8px / 30% 30% 8px 8px; padding: 22px 10px 12px; text-align: center;
+  background: radial-gradient(circle at 50% 30%, #fff 0%, #f4e7cf 70%);
+}
+.frame .lang { font: 600 10px/1 ui-sans-serif, system-ui, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); margin: 0 0 8px; }
+.frame h3 { margin: 0; font-size: 19px; word-break: break-word; }
+.frame .dir { margin: 2px 0 0; font: 12px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; color: #7d6650; word-break: break-all; }
+.frame .years { margin: 8px 0 0; font-size: 15px; letter-spacing: .08em; }
+.gift { margin: 12px 2px 0; text-align: center; font-size: 13.5px; line-height: 1.4; color: #5a3a26; }
+.gift span { display: block; font: 600 9.5px/1.6 ui-sans-serif, system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #9a7a5f; }
+.gift span:last-child { text-transform: none; letter-spacing: 0; font-weight: 400; font-size: 11px; }
+blockquote { margin: 14px 4px 10px; font-style: italic; font-size: 15px; text-align: center; color: #4b2d1e; }
+blockquote::before { content: "“"; } blockquote::after { content: "”"; }
+dl { margin: 0; font: 12.5px/1.4 ui-sans-serif, system-ui, sans-serif; }
+dt { color: var(--marigold-deep); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; margin-top: 8px; }
+dd { margin: 1px 0 0; overflow-wrap: anywhere; }
+code { font: 11.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; background: #f3e5c9; padding: 0 4px; border-radius: 3px; }
+.sha { font: 11px ui-monospace, monospace; color: #8a7461; }
+.candle { position: absolute; left: 50%; bottom: -10px; width: 18px; height: 40px; margin-left: -9px; background: linear-gradient(90deg, #f6e7c7, var(--candle) 40%, #e9d6ae); border-radius: 3px; }
+.candle i { position: absolute; left: 50%; top: -20px; width: 12px; height: 20px; margin-left: -6px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: radial-gradient(circle at 50% 75%, #fff 0 20%, #ffd166 35%, #ff7b00 70%, transparent 72%); filter: blur(.3px);
+  box-shadow: 0 0 18px 6px rgba(255,170,60,.45); animation: flicker 1.8s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+@keyframes flicker { 0% { transform: scale(1) rotate(-2deg); opacity: .95; } 40% { transform: scale(1.08,.94) rotate(2deg); } 100% { transform: scale(.94,1.06) rotate(-1deg); opacity: 1; } }
+.petal { position: fixed; top: -20px; width: 10px; height: 10px; border-radius: 60% 0 60% 0; background: var(--marigold); opacity: .8;
+  animation: fall var(--t) linear infinite; animation-delay: var(--d); pointer-events: none; }
+@keyframes fall { to { transform: translateY(110vh) rotate(540deg); } }
+footer { text-align: center; color: var(--muted); font: 13px/1.6 ui-sans-serif, system-ui, sans-serif; padding: 10px 16px 40px; max-width: 46em; margin: 0 auto; }
+footer a { color: var(--marigold); }
+footer code { background: rgba(255,255,255,.08); color: var(--paper); }
+@media (max-width: 640px) { .tier-0, .tier-1, .tier-2 { max-width: 100%; } .portrait { width: 100%; max-width: 320px; } }
+@media (prefers-reduced-motion: reduce) { .flag, .candle i, .petal { animation: none; } .petal { display: none; } }
+</style>
+</head>
+<body>
+<div class="banner"><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:0.0s"><path fill="#e4007c" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M30 22a8 8 0 1 0 0.1 0Z M14 46l6-6 6 6-6 6Z M34 46l6-6 6 6-6 6Z M10 14h4v4h-4Z M46 14h4v4h-4Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:0.4s"><path fill="#ff8c00" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M30 14l10 16-10 16-10-16Z M12 50a4 4 0 1 0 0.1 0Z M48 50a4 4 0 1 0 0.1 0Z M16 18h3v3h-3Z M41 18h3v3h-3Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:0.8s"><path fill="#7b2cbf" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M22 20a5 5 0 1 0 0.1 0Z M38 20a5 5 0 1 0 0.1 0Z M24 34h12l-6 8Z M18 48h24v3H18Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:1.2s"><path fill="#00a6a6" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M30 22a8 8 0 1 0 0.1 0Z M14 46l6-6 6 6-6 6Z M34 46l6-6 6 6-6 6Z M10 14h4v4h-4Z M46 14h4v4h-4Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:0.0s"><path fill="#ffd23f" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M30 14l10 16-10 16-10-16Z M12 50a4 4 0 1 0 0.1 0Z M48 50a4 4 0 1 0 0.1 0Z M16 18h3v3h-3Z M41 18h3v3h-3Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:0.4s"><path fill="#2ec4b6" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M22 20a5 5 0 1 0 0.1 0Z M38 20a5 5 0 1 0 0.1 0Z M24 34h12l-6 8Z M18 48h24v3H18Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:0.8s"><path fill="#ff5d8f" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M30 22a8 8 0 1 0 0.1 0Z M14 46l6-6 6 6-6 6Z M34 46l6-6 6 6-6 6Z M10 14h4v4h-4Z M46 14h4v4h-4Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:1.2s"><path fill="#e4007c" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M30 14l10 16-10 16-10-16Z M12 50a4 4 0 1 0 0.1 0Z M48 50a4 4 0 1 0 0.1 0Z M16 18h3v3h-3Z M41 18h3v3h-3Z"/></svg><svg class="flag" viewBox="0 0 60 64" aria-hidden="true" style="--d:0.0s"><path fill="#ff8c00" fill-rule="evenodd" d="M0 0H60V56l-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8-5 8-5-8Z M22 20a5 5 0 1 0 0.1 0Z M38 20a5 5 0 1 0 0.1 0Z M24 34h12l-6 8Z M18 48h24v3H18Z"/></svg></div>
+<header>
+  <p class="kicker">Día de los Muertos · Ofrenda</p>
+  <h1>The Haunted House</h1>
+  <p class="sub">Every deleted file was a gift from someone. For the files we let go, and for the hands that made them: what is remembered never fully dies.</p>
+  <div class="stats"><span><b>5</b>departed files</span><span><b>87</b>lines laid to rest</span><span><b>5</b>people who tended them</span></div>
+</header>
+<main>
+<section class="tier tier-0"><article class="portrait"><div class="frame"><p class="lang">Python</p><h3 title="src/fax_gateway.py">fax_gateway.py</h3><p class="dir">src/</p><p class="years">2017–2024</p></div><p class="gift"><span>born with the words</span>“Add fax gateway for the Hargrove account”<span>— Marguerite Okafor, 14 February 2017</span></p><blockquote>Born for Hargrove’s faxes. Died with a colour request.</blockquote><dl><dt>Tended by</dt><dd>Marguerite Okafor, Tomás Ibarra</dd><dt>Lived</dt><dd>7 years, 5 months, 3 commits</dd><dt>Laid to rest</dt><dd>by Dev Patel: Remove fax support. Hargrove went paperless; the last fax was sent in March 2021. <span class="sha">f4af1d7</span></dd><dt>Favorite offerings</dt><dd><code>smtplib</code> <code>time</code> <code>email.message</code></dd><dt>Last words</dt><dd><code>return send_fax(number, note.encode(&quot;latin-1&quot;))</code></dd><dt>Unfinished business</dt><dd>TODO: support colour faxes (Hargrove asked twice)</dd></dl><div class="candle" aria-hidden="true"><i></i></div></article></section><section class="tier tier-1"><article class="portrait"><div class="frame"><p class="lang">COBOL</p><h3 title="legacy/PAYROLL.cbl">PAYROLL.cbl</h3><p class="dir">legacy/</p><p class="years">1999–2023</p></div><p class="gift"><span>born with the words</span>“Initial payroll run for the Friday batch”<span>— Edna Halvorsen, 15 March 1999</span></p><blockquote>Twenty-four years. Friday batches. Edna’s gratitude still lingers.</blockquote><dl><dt>Tended by</dt><dd>Edna Halvorsen</dd><dt>Lived</dt><dd>24 years, 6 months, 1 commit</dd><dt>Laid to rest</dt><dd>by Dev Patel: Migrate payroll from COBOL to Rust. Overtime finally works. Thank you, Edna. <span class="sha">0097036</span></dd><dt>Last words</dt><dd><code>DISPLAY &quot;PAY &quot; WS-NAME &quot; THE SUM OF &quot; WS-GROSS.</code></dd><dt>Unfinished business</dt><dd>TODO: OVERTIME AFTER 40 HOURS (ASKED FOR IN 1999)</dd></dl><div class="candle" aria-hidden="true"><i></i></div></article><article class="portrait"><div class="frame"><p class="lang">Shell</p><h3 title="scripts/deploy_friday.sh">deploy_friday.sh</h3><p class="dir">scripts/</p><p class="years">2021</p></div><p class="gift"><span>born with the words</span>“Add a one-command Friday deploy”<span>— Jules Carter, 29 October 2021</span></p><blockquote>Jules Carter’s touch. A Friday deploy, then gone.</blockquote><dl><dt>Tended by</dt><dd>Jules Carter</dd><dt>Lived</dt><dd>2 days, 1 commit</dd><dt>Laid to rest</dt><dd>by Priya Raman: Remove Friday deploy script. See incident #666. We do not speak of that weekend. <span class="sha">9b9ddc7</span></dd><dt>Last words</dt><dd><code>echo &quot;Deployed. Have a great weekend!&quot;</code></dd></dl><div class="candle" aria-hidden="true"><i></i></div></article></section><section class="tier tier-2"><article class="portrait"><div class="frame"><p class="lang">JavaScript</p><h3 title="lib/leftpad.js">leftpad.js</h3><p class="dir">lib/</p><p class="years">2015–2016</p></div><p class="gift"><span>born with the words</span>“Vendor leftpad so we never depend on the internet again”<span>— Kai Moreno, 2 June 2015</span></p><blockquote>String.prototype.padStart – a more reliable partner now.</blockquote><dl><dt>Tended by</dt><dd>Kai Moreno</dd><dt>Lived</dt><dd>9 months, 1 commit</dd><dt>Laid to rest</dt><dd>by Priya Raman: Replace leftpad with String.prototype.padStart <span class="sha">89c817a</span></dd><dt>Last words</dt><dd><code>return str;</code></dd></dl><div class="candle" aria-hidden="true"><i></i></div></article><article class="portrait"><div class="frame"><p class="lang">C</p><h3 title="src/y2k_patch.c">y2k_patch.c</h3><p class="dir">src/</p><p class="years">1999–2000</p></div><p class="gift"><span>born with the words</span>“Emergency Y2K patch for the ledger”<span>— Edna Halvorsen, 30 December 1999</span></p><blockquote>Emergency Y2K patch. Ledger secured… briefly. Then gone.</blockquote><dl><dt>Tended by</dt><dd>Edna Halvorsen</dd><dt>Lived</dt><dd>2 days, 1 commit</dd><dt>Laid to rest</dt><dd>by Edna Halvorsen: It worked. Nothing happened. Removing the Y2K patch. <span class="sha">33de889</span></dd><dt>Favorite offerings</dt><dd><code>stdio.h</code> <code>time.h</code></dd><dt>Last words</dt><dd><code>return 0;</code></dd><dt>Unfinished business</dt><dd>FIXME: this window breaks again in 2050. Someone else&#x27;s problem.</dd></dl><div class="candle" aria-hidden="true"><i></i></div></article></section>
+</main>
+<footer>
+  <p>Epitaphs drafted by <code>gemma3:4b</code>, an open-weight model running on this machine, and checked against git history. No code left the machine.</p>
+  <p>Built 2026-10-27 with <a href="https://github.com/ANIRUDDH-001/git-seance">git-seance</a>. Summon any of them: <code>git seance summon &lt;path&gt;</code></p>
+</footer>
+<span class="petal" style="left:0%;--t:9s;--d:0.0s"></span><span class="petal" style="left:37%;--t:16s;--d:1.3s"></span><span class="petal" style="left:74%;--t:15s;--d:2.6s"></span><span class="petal" style="left:11%;--t:14s;--d:3.9s"></span><span class="petal" style="left:48%;--t:13s;--d:5.2s"></span><span class="petal" style="left:85%;--t:12s;--d:6.5s"></span><span class="petal" style="left:22%;--t:11s;--d:7.8s"></span><span class="petal" style="left:59%;--t:10s;--d:0.1s"></span><span class="petal" style="left:96%;--t:9s;--d:1.4s"></span><span class="petal" style="left:33%;--t:16s;--d:2.7s"></span><span class="petal" style="left:70%;--t:15s;--d:4.0s"></span><span class="petal" style="left:7%;--t:14s;--d:5.3s"></span><span class="petal" style="left:44%;--t:13s;--d:6.6s"></span><span class="petal" style="left:81%;--t:12s;--d:7.9s"></span><span class="petal" style="left:18%;--t:11s;--d:0.2s"></span><span class="petal" style="left:55%;--t:10s;--d:1.5s"></span><span class="petal" style="left:92%;--t:9s;--d:2.8s"></span><span class="petal" style="left:29%;--t:16s;--d:4.1s"></span>
+</body>
+</html>

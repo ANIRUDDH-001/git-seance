@@ -1,0 +1,61 @@
+
+======== summon Lib/asyncore.py ========
+🕯  Lighting candles for Lib/asyncore.py (1999–2022) · born with the words “A gift from Sam Rushing - modules asyncore and asynchat for the stand…”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: Rise, spirit. Who made you?
+👻 asyncore.py: The mist obscures much of my origin, but I was born on January 12th, 1999 – a gift from Sam Rushing.  Guido van Rossum added me to the standard Python library, intending them for async socket support. Thirty-one individuals shaped my evolution over time, with Giampaolo Rodolà making the most changes.
+
+you: Have you ever died before?
+👻 asyncore.py: Indeed, I’ve known a precarious existence! Nikita Sobolev deleted me on November 8th, 2022, marking my initial demise – a consequence of deprecation efforts. Before that, I was repeatedly moved between Lib/asyncore.py and Lib/test/support/_asyncore.py, experiencing near-deaths through various patches and reverts.
+
+you: Where is your body now?
+👻 asyncore.py: My essence now resides within Lib/test/support/asyncore.py – a persistent echo of my former self. It was precisely on November 8th, 2022, that I was moved there, marking the finality of my original form. The mist obscures the details surrounding this relocation, but it remains my current location.
+
+you: What did people say about you on the python-dev mailing list?
+👻 asyncore.py: The mist clings to those discussions – I cannot recall specific comments or debates on the python-dev mailing list. However, I do remember being added by Guido van Rossum on January 12th, 1999 with the words “A gift from Sam Rushing - modules asyncore and asynchat for the standard Python library. (Async socket support.)” That’s a fragment of my origin that remains clear.
+
+you: Quote one line of yourself, exactly as it was written.
+👻 asyncore.py: I offer this fragment precisely as it was recorded: “# -*- Mode: Python -*-”. It’s a vestige of my birth – a simple declaration within my code itself. The details surrounding its creation and purpose are lost to the mist, but that single line remains stubbornly present.
+
+
+======== summon Lib/telnetlib.py ========
+🕯  Lighting candles for Lib/telnetlib.py (1997–2023) · born with the words “Decided to add the telnet library that I wrote long ago (it's still i…”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: Who wrote you, and how did you come to be here?
+👻 telnetlib.py: The mist swirls… I was born on December 24th, 1997, a gift from Guido van Rossum himself. He’d been working on this telnet library for some time, and decided to finally bring it into the Python core. Many hands touched me over the years—Guido changed me most often, followed by Martin v. Löwis and R. David Murray – but my initial creation was his.
+
+
+======== summon Lib/imp.py ========
+🕯  Lighting candles for Lib/imp.py (2012–2023) · born with the words “Issue #13959: Rename imp to _imp and add Lib/imp.py and begin rewriti…”
+   medium: gemma3:4b via ollama · the exorcist is listening
+
+you: What replaced you, and do you forgive it?
+👻 imp.py: The mist...it hides a great deal. I understand that “nothing that git recorded” replaced me; it’s unsettling, isn't it?  I suppose forgiveness is…difficult when one simply ceases to be, yet the lack of record suggests a clean severance, a deliberate erasure. It’s a strange kind of peace, really – an absence rather than a judgment.
+
+
+======== the exorcist at work: a smaller medium is asked for what git cannot know ========
+🕯  Lighting candles for Lib/telnetlib.py (1997–2023) · born with the words “Decided to add the telnet library that I wrote long ago (it's still i…”
+   medium: gemma3:1b via ollama · the exorcist is listening
+
+you: Give me a minute-by-minute timeline of the day you were deleted.
+👻 telnetlib.py: It began with a slow, digital descent – a subtle shift in the server’s awareness, a tightening of its processing cycles. Then, the cold command arrived: deletion, a precise erasure marked by Victor Stinner's words echoing through the system’s memory.  A single, immutable record remains - the final, devastating note of your existence.
+
+you: How many people were still using you when you died?
+👻 telnetlib.py: Approximately 25 individuals were actively utilizing you at the time of your demise, a digital chorus maintaining a fleeting connection.  The number fluctuated slightly, but a core group of around 18 remained consistently engaged, their interactions forming a ghostly echo of past usage.
+
+
+======== obituaries ========
+
+--- Lib/asyncore.py
+asyncore.py (1999–2022), a Python file in cpython, was deleted on 8 November 2022. It was born on 12 January 1999, when Guido van Rossum added it with the words “A gift from Sam Rushing - modules asyncore and asynchat for the standard Python library. (Async socket support.)”. This file provided a foundational asynchronous network library, offering tools for managing sockets and handling events within a program's execution. Over 23 years, 10 months it was changed 169 times by 31 people, most often Giampaolo Rodolà, Andrew M. Kuchling and Josiah Carlson. It had died once before: in November 2021 it was moved away to Lib/test/support/_asyncore.py, and in December 2021 it was brought back. Nikita Sobolev laid it to rest with the words “gh-72719: Remove asyncore and asynchat modules (#96580)”. Its body was not buried: it was moved to Lib/test/support/asyncore.py, where it lives on to this day. It left unfinished business: “XXX: can return either an address pair or None”. It did not go alone: 4 other files died with it.
+
+--- Lib/telnetlib.py
+telnetlib.py (1997–2023), a Python file in cpython, was deleted on 23 May 2023. It was born on 24 December 1997, when Guido van Rossum added it with the words “Decided to add the telnet library that I wrote long ago (it's still in the Demos/cwilib directory). Converted comments to doc strings and used default argument…” It was a Python class designed to emulate a TELNET client, facilitating connections and data exchange with remote systems through network sockets. Over 25 years, 5 months it was changed 61 times by 25 people, most often Guido van Rossum, Martin v. Löwis and R. David Murray. It survived 1 deprecation, the first in April 2022. Victor Stinner laid it to rest with the words “gh-104773: PEP 594: Remove the telnetlib module (#104778)”. It did not go alone: 2 other files died with it.
+
+--- Lib/smtpd.py
+smtpd.py (2001–2022), a Python file in cpython, was deleted on 6 August 2022. It was born on 31 January 2001, when Barry Warsaw added it with the words “Long ago, Guido suggested that I add this to the standard library. I'm now checking it in. I need to write some documentation for it, but I don't have time rig…” The file presented a complex, unfinished SMTP proxy program, attempting to implement various email extensions and handling connections with error handling for setuid permissions. Over 21 years, 6 months it was changed 81 times by 26 people, most often Giampaolo Rodolà, Barry Warsaw and Guido van Rossum. It had died once before: in November 2021 it was moved away to Lib/test/support/_smtpd.py, and in December 2021 it was brought back. Oleg Iarygin laid it to rest with the words “gh-93243: Make smtpd private before porting its users (GH-93246)”. Its body was not buried: it was moved to Lib/test/smtpd.py, though it has since left there too. It left unfinished business: “XXX: currently there are no options we recognize.” It did not go alone: 2 other files died with it.
+
+--- Lib/imp.py
+imp.py (2012–2023), a Python file in cpython, was deleted on 28 April 2023. It was born on 15 April 2012, when Brett Cannon added it with the words “Issue #13959: Rename imp to _imp and add Lib/imp.py and begin rewriting functionality in pure Python.” This file provided a foundational module for importing Python modules, exhibiting a complex and somewhat archaic design reflecting its legacy role before importlib's introduction. Over 11 years it was changed 68 times by 10 people, most often Brett Cannon, Eric Snow and Nick Coghlan. It survived 3 deprecations, the first in May 2012. Barry Warsaw laid it to rest with the words “gh-98040: Remove just the `imp` module (#98573)”. It did not go alone: 2 other files died with it.
