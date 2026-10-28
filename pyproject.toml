@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "git-seance"
+version = "0.1.0"
+description = "Summon the ghosts of deleted files from your git history. Runs on open-weight models (Gemma via Ollama), fully local."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Aniruddh Vijayvargia" }]
+keywords = ["git", "llm", "gemma", "ollama", "halloween", "dia-de-los-muertos"]
+classifiers = [
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Version Control :: Git",
+]
+dependencies = []
+
+[project.scripts]
+git-seance = "git_seance.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ANIRUDDH-001/git-seance"
+
+[tool.setuptools]
+packages = ["git_seance"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
