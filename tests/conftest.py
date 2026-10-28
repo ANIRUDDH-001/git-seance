@@ -1,6 +1,8 @@
 import json
 import os
+import shutil
 import subprocess
+import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -12,8 +14,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 @pytest.fixture(scope="session")
 def haunted_house(tmp_path_factory):
     target = tmp_path_factory.mktemp("repos") / "haunted-house"
+    bash = "bash"
+    if sys.platform == "win32":
+        git = shutil.which("git")
+        if git:
+            candidate = os.path.join(os.path.dirname(os.path.dirname(git)), "bin", "bash.exe")
+            if os.path.exists(candidate):
+                bash = candidate
     subprocess.run(
-        ["bash", os.path.join(ROOT, "demo", "make_haunted_house.sh"), str(target)],
+        [bash, os.path.join(ROOT, "demo", "make_haunted_house.sh"), str(target)],
         check=True, stdout=subprocess.DEVNULL,
     )
     return str(target)

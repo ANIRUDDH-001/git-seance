@@ -30,6 +30,11 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 from git_seance import history, rites  # noqa: E402
 from git_seance.exorcist import Exorcist, spell_out_years  # noqa: E402
 from git_seance.medium import Medium, SpiritsSilent  # noqa: E402

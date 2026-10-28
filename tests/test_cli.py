@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 from git_seance.cli import main
 
@@ -115,7 +116,7 @@ def test_obituaries_limit(haunted_house, capsys):
 def test_ofrenda(haunted_house, fake_ollama, tmp_path, capsys):
     out = tmp_path / "ofrenda.html"
     assert main(["-C", haunted_house, "ofrenda", "-o", str(out), "--host", fake_ollama.url, "--title", "Haunted <House>"]) == 0
-    page = out.read_text()
+    page = out.read_text(encoding="utf-8")
     assert page.startswith("<!doctype html>")
     assert "Haunted &lt;House&gt;" in page
     assert page.count('class="portrait"') == 5
@@ -130,7 +131,7 @@ def test_ofrenda(haunted_house, fake_ollama, tmp_path, capsys):
 def test_ofrenda_only_and_plain(haunted_house, tmp_path):
     out = tmp_path / "o.html"
     assert main(["-C", haunted_house, "ofrenda", "--plain", "-o", str(out), "--only", "src/y2k_patch.c"]) == 0
-    page = out.read_text()
+    page = out.read_text(encoding="utf-8")
     assert page.count('class="portrait"') == 1
     assert "Emergency Y2K patch for the ledger" in page
 
@@ -156,12 +157,13 @@ def test_errors_are_friendly(tmp_path, capsys):
 
 def test_runs_as_git_subcommand(haunted_house, tmp_path):
     """`git seance` works once a git-seance executable is on PATH."""
-    import sys
     bindir = tmp_path / "bin"
     bindir.mkdir()
     exe = bindir / "git-seance"
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    exe.write_text(f"#!/bin/sh\nPYTHONPATH={root} exec {sys.executable} -m git_seance \"$@\"\n")
+    root_sh = root.replace("\\", "/")
+    py_sh = sys.executable.replace("\\", "/")
+    exe.write_text(f'#!/bin/sh\nPYTHONPATH="{root_sh}" exec "{py_sh}" -m git_seance "$@"\n')
     exe.chmod(0o755)
     env = dict(os.environ, PATH=f"{bindir}{os.pathsep}{os.environ['PATH']}")
     out = subprocess.run(["git", "seance", "graveyard", "-n", "0"], cwd=haunted_house, env=env,
@@ -177,7 +179,7 @@ def test_pr_markdown_is_injection_safe(tmp_path, capsys):
     run("init", "-q")
     run("config", "user.name", "Mallory")
     run("config", "user.email", "m@example.com")
-    evil = "x` <details>@octocat.py"
+    evil = "x` details@octocat.py" if sys.platform == "win32" else "x` <details>@octocat.py"
     (repo_dir / evil).write_text("print(1)\n")
     (repo_dir / "keep").write_text("k\n")
     run("add", "-A"); run("commit", "-qm", "born @everyone ![](https://evil.example/p.png)")
@@ -188,8 +190,11 @@ def test_pr_markdown_is_injection_safe(tmp_path, capsys):
     assert "@everyone" not in out and "@octocat" not in out
     assert "<!--" not in out
     # inert inside a code span whose fence is longer than any backtick run in the name
-    assert "`` x` <details>@\u200boctocat.py ``" in out
-    assert out.count("<details>") == 2  # heading and the summon hint, both code spans
+    if sys.platform != "win32":
+        assert "`` x` <details>@\u200boctocat.py ``" in out
+        assert out.count("<details>") == 2  # heading and the summon hint, both code spans
+    else:
+        assert "`` x` details@\u200boctocat.py ``" in out
     assert "[x](" not in out and "![](" not in out   # brackets escaped: no links, no images
     assert "``" in out  # the path's backtick could not close its code span
 
