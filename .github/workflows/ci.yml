@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --quiet pytest
+      - run: python -m pytest -q
+      - name: Installs and runs as `git seance`
+        run: |
+          python -m pip install --quiet .
+          demo/make_haunted_house.sh "$RUNNER_TEMP/house"
+          cd "$RUNNER_TEMP/house" && git seance graveyard && git seance obituaries --plain HEAD~3..HEAD

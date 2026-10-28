@@ -1,0 +1,147 @@
+name: Séance (real Gemma)
+
+# Real open-weight models on free, CPU-only GitHub runners:
+#   eval      how often does the ghost invent facts? (3 Gemma sizes x 3 setups)
+#   showcase  CPython's dead batteries: séance transcripts, obituaries, ofrenda
+#   memoriam  the In Memoriam action, end to end, on the demo repository
+# The archive workflow copies a run's outputs into docs/demo; pages.yml publishes them.
+on:
+  push:
+    paths:
+      - "git_seance/**"
+      - "demo/**"
+      - "scripts/**"
+      - "action.yml"
+      - ".github/workflows/seance-e2e.yml"
+  workflow_dispatch:
+    inputs:
+      showcase_only:
+        description: "Only regenerate the showcase (skip the two-hour eval)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seance-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CPYTHON_REF: d54c2d89b7a6b75bab996eacca22b85816f56762   # CPython main, 2026-10-27
+  SEANCE_SEED: "7"
+
+jobs:
+  eval:
+    if: ${{ !inputs.showcase_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { model: "gemma3:270m", graves: 99 }
+          - { model: "gemma3:1b", graves: 99 }
+          - { model: "gemma3:4b", graves: 3 }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ runner.os }}-${{ matrix.model }}
+      - name: Wake the medium
+        run: scripts/start-ollama.sh "${{ matrix.model }}"
+      - name: Dig up the graves
+        run: |
+          demo/make_haunted_house.sh "$RUNNER_TEMP/haunted-house"
+          git clone --quiet --no-checkout https://github.com/python/cpython.git "$RUNNER_TEMP/cpython"
+          git -C "$RUNNER_TEMP/cpython" update-ref --no-deref HEAD "$CPYTHON_REF"
+      - name: Ask every ghost every question, three ways
+        env:
+          MODEL: ${{ matrix.model }}
+          GRAVES: ${{ matrix.graves }}
+        run: |
+          slug="${MODEL//[:.]/-}"
+          python3 scripts/eval.py --model "$MODEL" --graves "$GRAVES" \
+            --repo house="$RUNNER_TEMP/haunted-house" --repo cpython="$RUNNER_TEMP/cpython" \
+            --out "eval/$slug.json"
+      - name: Print the results into the log (base64)
+        if: always()
+        run: |
+          find eval -type f | sort | while read -r f; do
+            echo "=====BEGIN $f"; gzip -9c "$f" | base64 -w 120; echo "=====END $f"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-${{ strategy.job-index }}
+          path: eval/
+
+  showcase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      SEANCE_MODEL: gemma3:4b
+      PYTHONPATH: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ runner.os }}-gemma3:4b
+      - name: Wake the medium
+        run: |
+          scripts/start-ollama.sh "$SEANCE_MODEL"
+          ollama pull gemma3:1b   # the smaller medium, for the exorcist demo
+      - name: Clone CPython (full history, pinned)
+        run: |
+          git clone --quiet --no-checkout https://github.com/python/cpython.git "$RUNNER_TEMP/cpython"
+          git -C "$RUNNER_TEMP/cpython" update-ref --no-deref HEAD "$CPYTHON_REF"
+      - name: Commune with the dead batteries
+        run: demo/dead_batteries_seance.sh "$RUNNER_TEMP/cpython" site
+      - name: The haunted house, too
+        run: |
+          demo/make_haunted_house.sh "$RUNNER_TEMP/haunted-house"
+          demo/haunted_house_seance.sh "$RUNNER_TEMP/haunted-house" site/haunted-house
+      - name: Print the results into the log (base64, for tools that can read logs but not artifacts)
+        if: always()
+        run: |
+          find site -type f | sort | while read -r f; do
+            echo "=====BEGIN $f"; gzip -9c "$f" | base64 -w 120; echo "=====END $f"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: showcase
+          path: site/
+
+  memoriam:
+    if: ${{ !inputs.showcase_only }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: demo/make_haunted_house.sh "$RUNNER_TEMP/haunted-house"
+      - id: range
+        working-directory: ${{ runner.temp }}/haunted-house
+        run: |
+          echo "base=$(git rev-parse HEAD~2)" >> "$GITHUB_OUTPUT"
+          echo "head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: The In Memoriam action, on the demo repository
+        id: memoriam
+        uses: ./
+        with:
+          model: gemma3:1b
+          working-directory: ${{ runner.temp }}/haunted-house
+          base: ${{ steps.range.outputs.base }}
+          head: ${{ steps.range.outputs.head }}
+          comment: "false"
+      - name: Check it
+        env:
+          DEATHS: ${{ steps.memoriam.outputs.deaths }}
+          FILE: ${{ steps.memoriam.outputs.obituaries }}
+        run: |
+          test "$DEATHS" = "2"
+          grep -q "In Memoriam" "$FILE"
+          grep -q "laid it to rest" "$FILE"
+          cat "$FILE"

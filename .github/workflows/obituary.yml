@@ -1,0 +1,21 @@
+name: In Memoriam
+
+# Every pull request that deletes files gets obituaries, written by Gemma
+# running on the Actions runner itself.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  obituaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./
+        with:
+          model: gemma3:1b

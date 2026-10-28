@@ -1,0 +1,118 @@
+name: "git-seance · In Memoriam"
+description: "When a pull request deletes files, an open-weight model running inside the job writes their obituaries. No API keys, no code leaves the runner."
+author: "Aniruddh Vijayvargia"
+branding:
+  icon: "feather"
+  color: "orange"
+
+inputs:
+  model:
+    description: "Ollama model that writes the obituaries"
+    default: "gemma3:1b"
+  base:
+    description: "Base commit (defaults to the pull request base)"
+    default: ${{ github.event.pull_request.base.sha }}
+  head:
+    description: "Head commit (defaults to the pull request head)"
+    default: ${{ github.event.pull_request.head.sha }}
+  max-obituaries:
+    description: "Most obituaries to write; the rest get unmarked graves"
+    default: "6"
+  comment:
+    description: "Post (or update) a comment on the pull request"
+    default: "true"
+  working-directory:
+    description: "Path of the git repository"
+    default: "."
+  github-token:
+    description: "Token used to comment"
+    default: ${{ github.token }}
+
+outputs:
+  deaths:
+    description: "Number of files that died in the range"
+    value: ${{ steps.census.outputs.deaths }}
+  obituaries:
+    description: "Path of the markdown file with the obituaries"
+    value: ${{ steps.write.outputs.file }}
+
+runs:
+  using: composite
+  steps:
+    - name: Count the dead
+      id: census
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        PYTHONPATH: ${{ github.action_path }}
+        BASE: ${{ inputs.base }}
+        HEAD: ${{ inputs.head }}
+      run: |
+        if [ -z "$BASE" ] || [ -z "$HEAD" ]; then
+          echo "::error::git-seance needs base and head commits (run it on pull_request, or pass base/head)."
+          exit 1
+        fi
+        if ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+          echo "::error::Base commit $BASE is not in this clone. Use actions/checkout with fetch-depth: 0."
+          exit 1
+        fi
+        # the same tree diff (from the merge base) that the obituaries use
+        n=$(python3 -c 'import os; from git_seance import history as h; print(len(h.deaths_in_range(h.Repo("."), os.environ["BASE"], os.environ["HEAD"])))')
+        echo "deaths=$n" >> "$GITHUB_OUTPUT"
+        echo "Files laid to rest: $n"
+
+    - name: Restore the medium's memory (model cache)
+      if: steps.census.outputs.deaths != '0'
+      uses: actions/cache@v4
+      with:
+        path: ~/.ollama/models
+        key: ollama-${{ runner.os }}-${{ inputs.model }}
+
+    - name: Wake the medium (Ollama)
+      if: steps.census.outputs.deaths != '0'
+      shell: bash
+      env:
+        MODEL: ${{ inputs.model }}
+        START: ${{ github.action_path }}/scripts/start-ollama.sh
+      run: bash "$START" "$MODEL"
+
+    - name: Write the obituaries
+      id: write
+      if: steps.census.outputs.deaths != '0'
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        PYTHONPATH: ${{ github.action_path }}
+        BASE: ${{ inputs.base }}
+        HEAD: ${{ inputs.head }}
+        MODEL: ${{ inputs.model }}
+        MAX: ${{ inputs.max-obituaries }}
+      run: |
+        out="$RUNNER_TEMP/obituaries.md"
+        python3 -m git_seance obituaries "$BASE...$HEAD" --model "$MODEL" --max "$MAX" > "$out"
+        if [ "$(wc -c < "$out")" -gt 60000 ]; then  # GitHub comments stop at 65,536 characters
+          head -c 60000 "$out" > "$out.cut" && printf '\n\n_…the rest rest in unmarked graves._\n' >> "$out.cut" && mv "$out.cut" "$out"
+        fi
+        cat "$out" >> "$GITHUB_STEP_SUMMARY"
+        echo "file=$out" >> "$GITHUB_OUTPUT"
+
+    - name: Post them on the pull request
+      if: steps.census.outputs.deaths != '0' && inputs.comment == 'true' && github.event.pull_request.number
+      continue-on-error: true  # forks get a read-only token; the job summary still has everything
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        PR: ${{ github.event.pull_request.number }}
+        REPO: ${{ github.repository }}
+        FILE: ${{ steps.write.outputs.file }}
+      run: |
+        marker='<!-- git-seance:in-memoriam -->'
+        body="$(cat "$FILE")"$'\n\n'"$marker"
+        id=$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
+              --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | contains(\"$marker\"))) | .id" | head -n 1)
+        if [ -n "$id" ]; then
+          gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" > /dev/null
+        else
+          gh api -X POST "repos/$REPO/issues/$PR/comments" -f body="$body" > /dev/null
+        fi
+        echo "The obituaries are posted."
