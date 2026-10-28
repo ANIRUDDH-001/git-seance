@@ -1,0 +1,20 @@
+# PEP 594 "Removing dead batteries from the standard library" (Python 3.13),
+# plus asyncore/asynchat/smtpd (3.12), imp (3.12) and distutils' core (PEP 632).
+Lib/asynchat.py
+Lib/asyncore.py
+Lib/smtpd.py
+Lib/imp.py
+Lib/telnetlib.py
+Lib/cgi.py
+Lib/cgitb.py
+Lib/nntplib.py
+Lib/imghdr.py
+Lib/sndhdr.py
+Lib/sunau.py
+Lib/aifc.py
+Lib/chunk.py
+Lib/uu.py
+Lib/xdrlib.py
+Lib/pipes.py
+Lib/mailcap.py
+Lib/crypt.py
